@@ -1,0 +1,7 @@
+<template>
+  <v-footer color="#d6d6d6" app>
+    <div class="Wid100 TexAlRight">
+      <span>EBAT - <strong>Ernesto Borges Advogados</strong> | Copyright &copy; 2019</span>
+    </div>
+  </v-footer>
+</template>
