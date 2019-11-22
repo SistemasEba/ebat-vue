@@ -8,6 +8,8 @@ import Footer from "./components/Footer";
 
 import Login from "./views/Login";
 import Index from "./views/Index";
+import PessoaList from "./views/PessoaList";
+import PessoaForm from "./views/PessoaForm";
 
 export default new Router({ 
     linkExactActiveClass: "active",
@@ -25,6 +27,24 @@ export default new Router({
             components: {
                 header: Header,
                 default: Index,
+                footer: Footer
+            }
+        },
+        {
+            path: "/restrito/pessoa",
+            name: "PessoaList",
+            components: {
+                header: Header,
+                default: PessoaList,
+                footer: Footer
+            }
+        },
+        {
+            path: "/restrito/pessoa/form",
+            name: "PessoaList",
+            components: {
+                header: Header,
+                default: PessoaForm,
                 footer: Footer
             }
         },

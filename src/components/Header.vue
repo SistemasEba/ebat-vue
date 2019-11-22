@@ -49,35 +49,43 @@ export default {
     items: [
       {
         icon: "mdi-scale-balance",
-        text: "Regras"
+        text: "Regras",
+        url: "/restrito/index"
       },
       {
         icon: "mdi-account-group",
-        text: "Pessoas"
+        text: "Pessoas",
+        url: "/restrito/pessoa"
       },
       {
         icon: "mdi-table-large",
-        text: "Núcleos"
+        text: "Núcleos",
+        url: "/restrito/nucleo"
       },
       {
         icon: "mdi-file-document-box-multiple",
-        text: "Projetos"
+        text: "Projetos",
+        url: "/restrito/projeto"
       },
       {
         icon: "mdi-account-box",
-        text: "Tipos"
+        text: "Tipos",
+        url: "/restrito/tipo"
       },
       {
         icon: "mdi-chart-line",
-        text: "Relatório"
+        text: "Relatório",
+        url: "/restrito/relatorio"
       },
       {
         icon: "mdi-view-dashboard",
-        text: "Lançamentos"
+        text: "Lançamentos",
+        url: "/restrito/lancamento"
       },
       {
         icon: "mdi-chart-pie",
-        text: "Dashboard"
+        text: "Dashboard",
+        url: "/restrito/dashboard"
       }
     ],
     model: 0
@@ -87,6 +95,18 @@ export default {
     if(id === undefined || id === null) {
       this.$router.push("/");
     }
+  },
+  created() {
+    let i = 0;
+    let t = this.$router.history.current.path;
+    
+    this.items.forEach(element => {
+      if(element.url === t) {
+        this.model = i;
+      } else {
+        i++;
+      }
+    });
   },
   methods: {
     changePage: function(i) {

@@ -46,6 +46,10 @@
                   label="Sigla"
                   name="sigla"
                   type="text"
+                  dense
+                  counter
+                  outlined
+                  clearable
                   v-model="sigla"
                   color="orange"
                   :rules="rules"
@@ -54,6 +58,9 @@
                   :disabled="lembr"
                 />
                 <v-text-field
+                  dense
+                  outlined
+                  clearable
                   id="password"
                   label="Senha"
                   name="senha"
