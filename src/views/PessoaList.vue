@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <v-container fluid>
-      <v-btn color="orange" small dark v-on:click="goToForm">
+      <v-btn color="orange" small depressed dark v-on:click="goToForm">
         <v-icon>mdi-plus</v-icon>Adicionar
       </v-btn>
       <div class="EmptyBox10"></div>
@@ -12,7 +12,11 @@
         <v-text-field dense outlined clearable v-model="search" append-icon="mdi-magnify" label="Procurar" class="Fs13" color="orange" single-line hide-details></v-text-field>
       </v-card-title>
       <v-data-table dense 
+        v-model="selected"
+        no-data-text="Nenhum registro encontrado"
+        no-results-text="Nenhum registro encontrado"
         class="elevation-0"
+        @click:row="select"
         :headers="headers"
         :items="pessoas"
         :items-per-page="10"
@@ -32,6 +36,7 @@ import { PessoaService } from "../services/PessoaService";
 export default {
   data() {
     return {
+      selected: [],
       headers: [
         { text: "Sigla", value: "pessiglaa" },
         { text: "Nome", value: "pesdescri" },
@@ -78,6 +83,9 @@ export default {
     },
     goToForm: function() {
       this.$router.push("/restrito/pessoa/form");
+    },
+    select: function(item) {
+      this.$router.push("/restrito/pessoa/form/" + item.pessequen);
     }
   }
 };

@@ -40,8 +40,17 @@ export default new Router({
             }
         },
         {
+            path: "/restrito/pessoa/form/:id",
+            name: "PessoaFormEx",
+            components: {
+                header: Header,
+                default: PessoaForm,
+                footer: Footer
+            }
+        },
+        {
             path: "/restrito/pessoa/form",
-            name: "PessoaList",
+            name: "PessoaForm",
             components: {
                 header: Header,
                 default: PessoaForm,

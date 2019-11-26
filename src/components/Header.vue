@@ -101,7 +101,7 @@ export default {
     let t = this.$router.history.current.path;
     
     this.items.forEach(element => {
-      if(element.url === t) {
+      if(t.includes(element.url)) {
         this.model = i;
       } else {
         i++;

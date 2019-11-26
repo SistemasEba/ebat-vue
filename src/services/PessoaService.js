@@ -47,14 +47,14 @@ export class PessoaService {
         });
     }
 
-    async update(state, nucleo) {
+    async update(state) {
         return await axios.put(this.url + "update", {
-            pessequen: state.id,
+            pessequen: state.pessequen,
             pesdescri: state.pesdescri,
             pessiglaa: state.pessiglaa,
             pesperfil: state.pesperfil,
             pesferias: state.pesferias,
-            pesnucseq: nucleo.nucsequen
+            pesnucseq: state.pesnucseq
         });
     }
 
