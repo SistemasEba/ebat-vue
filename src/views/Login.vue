@@ -69,6 +69,7 @@
                   color="orange"
                   :rules="rulesPassword"
                   v-if="lembr == false"
+                  v-on:keyup.enter="login"
                 />
               </v-form>
             </v-card-text>

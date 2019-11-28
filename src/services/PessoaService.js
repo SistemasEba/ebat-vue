@@ -12,7 +12,9 @@ export class PessoaService {
         return await axios({
             method: 'POST',
             url: this.url + "login",
-            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
             data: qs.stringify({
                 sigla: sigla,
                 senha: senha
@@ -60,5 +62,18 @@ export class PessoaService {
 
     async remove(id) {
         return await axios.delete(this.url + "remove/" + id);
+    }
+
+    async changePhoto(idUser, image) {
+        let endpoint = this.url + "change-photo?id=" + idUser;
+        let formData = new FormData();
+
+        formData.append("file", image);
+
+        await axios.post(endpoint, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
     }
 }

@@ -12,7 +12,7 @@ export class AndamentoService {
     }
 
     async getReports(dtInicial, dtFinal) {
-        return await axios.get(this.url + "find-report/" + dtInicial.toJSON().substring(0, 10) + "/" + dtFinal.toJSON().substring(0, 10));
+        return await axios.get(this.url + "find-report/" + dtInicial + "/" + dtFinal);
     }
 
     async getAllByEtapa(etapa) {
