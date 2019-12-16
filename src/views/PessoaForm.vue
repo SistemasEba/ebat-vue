@@ -1,14 +1,16 @@
 <template>
   <v-content>
     <v-container fluid>
-      <v-alert :value="showSuces" 
+      <v-alert
+        :value="showSuces"
         type="success"
         dark
         prominent
         dense
         border="left"
         icon="mdi-check"
-        transition="scale-transition">Operação realizada com sucesso!</v-alert>
+        transition="scale-transition"
+      >Operação realizada com sucesso!</v-alert>
       <v-alert
         :value="showError"
         type="error"
@@ -58,6 +60,17 @@
             v-model="senha"
             v-if="this.id === null || this.id === undefined"
             color="orange"
+          />
+          <v-text-field
+            dense
+            outlined
+            clearable
+            id="saida"
+            label="Horário de Saída"
+            name="saida"
+            type="text"
+            v-mask="mask"
+            v-model="saida"
           />
           <v-select
             dense
@@ -113,8 +126,8 @@
         <v-card-text>Realmente deseja remover esse registro?</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="orange darken-1" text @click="dialog = false">Não</v-btn>
-          <v-btn color="orange darken-1" text @click="remove">Sim</v-btn>
+          <v-btn color="orange darken-1" text v-on:click="dialog = false">Não</v-btn>
+          <v-btn color="orange darken-1" text v-on:click="remove">Sim</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -124,7 +137,11 @@
 <script>
 import { PessoaService } from "../services/PessoaService";
 import { NucleoService } from "../services/NucleoService";
+import { mask } from "vue-the-mask";
 export default {
+  directives: {
+    mask
+  },
   data() {
     return {
       id: null,
@@ -133,8 +150,10 @@ export default {
       senha: null,
       perfil: "",
       nucleo: "",
+      saida: "",
       ferias: false,
       dialog: false,
+      mask: "##:##",
       perfis: [
         { key: 1, value: 1, label: "Desenvolvedor" },
         { key: 2, value: 2, label: "Gestor" },
@@ -183,6 +202,7 @@ export default {
           this.perfil = pessoa.pesperfil;
           this.ferias = pessoa.pesferias === "S" ? true : false;
           this.nucleo = pessoa.pesnucseq.nucsequen;
+          this.saida = pessoa.peshrsaid;
         })
         .catch(error => {
           this.error = error;
@@ -191,21 +211,23 @@ export default {
     },
     save: async function() {
       if (this.id !== null && this.id !== undefined) {
-        await this.pessoaService.update({
-          pessequen: this.id,
-          pesdescri: this.nome,
-          pessiglaa: this.sigla,
-          pesperfil: this.perfil,
-          pesferias: this.ferias ? "S" : "N",
-          pesnucseq: this.nucleo
-        })
-        .then(() => {
-          this.showSuces = true;
-        })
-        .catch(error => {
-          this.error = error;
-          this.showError = true;
-        });
+        await this.pessoaService
+          .update({
+            pessequen: this.id,
+            pesdescri: this.nome,
+            pessiglaa: this.sigla,
+            pesperfil: this.perfil,
+            pesferias: this.ferias ? "S" : "N",
+            pesnucseq: this.nucleo,
+            peshrsaid: this.saida
+          })
+          .then(() => {
+            this.showSuces = true;
+          })
+          .catch(error => {
+            this.error = error;
+            this.showError = true;
+          });
       } else {
         let state = {
           pesdescri: this.nome,
@@ -213,18 +235,20 @@ export default {
           pesssenha: this.senha,
           pesperfil: this.perfil,
           pesferias: this.ferias ? "S" : "N",
-          pesnucseq: this.nucleo
+          pesnucseq: this.nucleo,
+          peshrsaid: this.saida
         };
         window.console.log(state);
-        await this.pessoaService.save(state)
-        .then(() => {
-          this.showSuces = true;
-          setTimeout(() => this.$router.push("/restrito/pessoa"), 2000);
-        })
-        .catch(error => {
-          this.error = error;
-          this.showError = true;
-        });
+        await this.pessoaService
+          .save(state)
+          .then(() => {
+            this.showSuces = true;
+            setTimeout(() => this.$router.push("/restrito/pessoa"), 2000);
+          })
+          .catch(error => {
+            this.error = error;
+            this.showError = true;
+          });
       }
     },
     remove: async function() {

@@ -34,6 +34,10 @@ export class PessoaService {
         return await axios.get(this.url + "find-all");
     }
 
+    async getAllUsers() {
+        return await axios.get(this.url + "find-all-users");
+    }
+
     async getById(id) {
         return await axios.get(this.url + "find/" + id);
     }
@@ -45,7 +49,8 @@ export class PessoaService {
             pesssenha: state.pesssenha,
             pesperfil: state.pesperfil,
             pesferias: state.pesferias,
-            pesnucseq: state.pesnucseq
+            pesnucseq: state.pesnucseq,
+            peshrsaid: state.peshrsaid
         });
     }
 
@@ -56,7 +61,8 @@ export class PessoaService {
             pessiglaa: state.pessiglaa,
             pesperfil: state.pesperfil,
             pesferias: state.pesferias,
-            pesnucseq: state.pesnucseq
+            pesnucseq: state.pesnucseq,
+            peshrsaid: state.peshrsaid
         });
     }
 

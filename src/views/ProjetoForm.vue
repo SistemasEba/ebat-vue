@@ -1,4 +1,8 @@
-<template></template>
+<template>
+  <v-content>
+    Oii
+  </v-content>
+</template>
 
 <script>
 import { TipoService } from "../services/TipoService";

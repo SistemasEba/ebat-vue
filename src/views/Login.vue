@@ -6,6 +6,7 @@
           <v-alert
             :value="obrig"
             type="warning"
+            dense
             dark
             prominent
             outlined
@@ -17,6 +18,7 @@
             :value="alert"
             type="warning"
             dark
+            dense
             prominent
             outlined
             border="left"
@@ -27,6 +29,7 @@
             :value="error"
             type="error"
             dark
+            dense
             prominent
             outlined
             border="left"
@@ -81,7 +84,7 @@
             </v-card-actions>
           </v-card>
           <div class="EmptyBox10"></div>
-          <p class="text-center">2019 &copy; Ernesto Borges Advogados</p>
+          <p class="text-center Fs13">EBAT - <strong>Ernesto Borges Advogados</strong> | Copyright &copy; 2019</p>
         </v-col>
       </v-row>
     </v-container>
