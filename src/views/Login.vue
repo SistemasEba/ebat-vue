@@ -84,7 +84,7 @@
             </v-card-actions>
           </v-card>
           <div class="EmptyBox10"></div>
-          <p class="text-center Fs13">EBAT - <strong>Ernesto Borges Advogados</strong> | Copyright &copy; 2019</p>
+          <p class="text-center Fs13">EBAT - <strong>Ernesto Borges Advogados</strong> | Copyright &copy; 2020</p>
         </v-col>
       </v-row>
     </v-container>

@@ -20,6 +20,7 @@
                     color="orange"
                     dense
                     hide-details
+                    outlined
                     v-model="dateFormatted"
                     label="Data Inicial"
                     @blur="date = parseDate(dateFormatted)"
@@ -51,6 +52,7 @@
                   <v-text-field
                     color="orange"
                     dense
+                    outlined
                     hide-details
                     v-model="dateFormattedF"
                     label="Data Final"

@@ -5,7 +5,7 @@
         <v-col cols="12" sm="6" md="4" lg="2">
           <v-dialog ref="dialog" v-model="modal" :return-value.sync="date" persistent width="290px">
             <template v-slot:activator="{ on }">
-              <v-text-field v-model="date" label="Mês" prepend-icon="mdi-calendar" dense v-on="on"></v-text-field>
+              <v-text-field v-model="date" label="Mês" outlined prepend-icon="mdi-calendar" dense v-on="on"></v-text-field>
             </template>
             <v-date-picker v-model="date" type="month" scrollable color="orange" locale="pt-br">
               <v-spacer></v-spacer>

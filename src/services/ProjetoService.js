@@ -19,7 +19,7 @@ export class ProjetoService {
         return await axios.post(this.url + "save", {
             pjttitulo: state.pjttitulo,
             pjtdescri: state.pjttitulo,
-            pjtdatsol: state.pjtdatsol.toJSON().substring(0, 10),
+            pjtdatsol: state.pjtdatsol,
             pjttipseq: state.pjttipseq,
             pjtnucseq: state.pjtnucseq,
             pjtsolseq: state.pjtsolseq,
@@ -32,7 +32,7 @@ export class ProjetoService {
             pjtsequen: state.id,
             pjttitulo: state.pjttitulo,
             pjtdescri: state.pjtdescri,
-            pjtdatsol: state.pjtdatsol.toJSON().substring(0, 10),
+            pjtdatsol: state.pjtdatsol,
             pjttipseq: state.pjttipseq,
             pjtnucseq: state.pjtnucseq,
             pjtsolseq: state.pjtsolseq,

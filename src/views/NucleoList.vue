@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <v-container fluid>
-      <v-btn small color="primary" dark v-on:click="goToForm">
+      <v-btn small depressed outlined color="primary" v-on:click="goToForm">
         <v-icon>mdi-plus</v-icon>Adicionar
       </v-btn>
       <div class="EmptyBox10"></div>

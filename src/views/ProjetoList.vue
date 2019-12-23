@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <v-container fluid>
-      <v-btn color="orange" small depressed dark>
+      <v-btn color="orange" small depressed outlined v-on:click="goToForm">
         <v-icon>mdi-plus</v-icon>Adicionar
       </v-btn>
       <v-data-iterator
@@ -16,10 +16,12 @@
           <v-col v-for="item in items" :key="item.name" cols="12" sm="6" md="4" lg="3">
             <v-card>
               <v-card-title>
-                <h4 style="color: #53565a">{{ item.pjttitulo }}</h4>
+                <a :href="'/#/restrito/projeto/form/' + item.pjtsequen" style="text-decoration: none">
+                  <h4 style="color: #53565a">{{ item.pjttitulo }}</h4>
+                </a>
               </v-card-title>
               <v-card-text>
-                  <v-btn class="ma-2" fab x-small depressed color="#f4f4f4">{{ item.qtdEtapas }}</v-btn> {{ item.pjtdescri }}
+                  <v-btn :title="'Acessar etapas de ' + item.pjttitulo" class="ma-2" fab x-small depressed color="#f4f4f4">{{ item.qtdEtapas }}</v-btn> {{ item.pjtdescri }}
               </v-card-text>
             </v-card>
           </v-col>
@@ -43,6 +45,11 @@ export default {
       .getAll()
       .then(response => (this.items = response.data))
       .catch(error => alert(error));
-  }
+  },
+  methods: {
+    goToForm: function() {
+      this.$router.push("/restrito/projeto/form");
+    },
+  },
 };
 </script>
