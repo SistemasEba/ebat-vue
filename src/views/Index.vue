@@ -33,6 +33,12 @@
   
           <strong>4</strong> O contribuinte que não manter sua estação de trabalho devidamente organizada e/ou não desligar os monitores no horário do almoço e na saida e estiver ausente será contabilizado marcador após uma advertência.
           <div class="EmptyBox10"></div>
+
+          <strong>4.1</strong> - Se o colaborador já estiver com marcador por causa do motivo acima as próximas advertências serão contabilizadas como marcadores.
+          <div class="EmptyBox10"></div>&nbsp;&nbsp;&nbsp;&nbsp;
+
+          <strong>4.2</strong> - As advertências serão zeradas no próximo mês.
+          <div class="EmptyBox10"></div>&nbsp;&nbsp;&nbsp;&nbsp;
   
           <strong>5</strong> - Não é permitido o cadastro de oito horas no período da manhã, ou de algo que ainda não foi realizado, os horários devem estar em concordância sobre o expediente.
           <div class="EmptyBox10"></div>
