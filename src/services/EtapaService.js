@@ -22,7 +22,7 @@ export class EtapaService {
     async save(state) {
         return await axios.post(this.url + "save", {
             etpdescri: state.etpdescri,
-            etpdatini: state.etpdatini.toJSON().substring(0, 10),
+            etpdatini: state.etpdatini,
             etphrspre: state.etphrspre,
             etphrstot: state.etphrstot,
             etppjtseq: state.etppjtseq,
@@ -36,8 +36,8 @@ export class EtapaService {
     async update(state) {
         return await axios.put(this.url + "update", {
             etpsequen: state.id,
-            etpdatini: state.etpdatini.toJSON().substring(0, 10),
-            etpdatfin: state.etpdatfin.toJSON().substring(0, 10),
+            etpdatini: state.etpdatini,
+            etpdatfin: state.etpdatfin,
             etphrspre: state.etphrspre,
             etpdescri: state.etpdescri,
             etphrstot: state.etphrstot,

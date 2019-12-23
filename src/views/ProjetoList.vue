@@ -16,12 +16,24 @@
           <v-col v-for="item in items" :key="item.name" cols="12" sm="6" md="4" lg="3">
             <v-card>
               <v-card-title>
-                <a :href="'/#/restrito/projeto/form/' + item.pjtsequen" style="text-decoration: none">
+                <a
+                  :href="'/#/restrito/projeto/form/' + item.pjtsequen"
+                  style="text-decoration: none"
+                >
                   <h4 style="color: #53565a">{{ item.pjttitulo }}</h4>
                 </a>
               </v-card-title>
               <v-card-text>
-                  <v-btn :title="'Acessar etapas de ' + item.pjttitulo" class="ma-2" fab x-small depressed color="#f4f4f4">{{ item.qtdEtapas }}</v-btn> {{ item.pjtdescri }}
+                <v-btn
+                  :title="'Acessar etapas de ' + item.pjttitulo"
+                  class="ma-2"
+                  fab
+                  x-small
+                  depressed
+                  color="#f4f4f4"
+                  v-on:click="goToEtapas(item.pjtsequen)"
+                >{{ item.qtdEtapas }}</v-btn>
+                {{ item.pjtdescri }}
               </v-card-text>
             </v-card>
           </v-col>
@@ -50,6 +62,9 @@ export default {
     goToForm: function() {
       this.$router.push("/restrito/projeto/form");
     },
-  },
+    goToEtapas: function(idProjeto) {
+      this.$router.push("/restrito/etapa/" + idProjeto);
+    }
+  }
 };
 </script>

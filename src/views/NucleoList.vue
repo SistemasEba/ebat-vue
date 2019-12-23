@@ -6,26 +6,37 @@
       </v-btn>
       <div class="EmptyBox10"></div>
       <v-card outlined>
-      <v-card-title style="color: #53565a">
-        Núcleos
-        <v-spacer></v-spacer>
-        <v-text-field dense outlined clearable v-model="search" append-icon="mdi-magnify" label="Procurar" class="Fs13" single-line hide-details></v-text-field>
-      </v-card-title>
-      <v-data-table dense 
-        v-model="selected"
-        no-data-text="Nenhum registro encontrado"
-        no-results-text="Nenhum registro encontrado"
-        class="elevation-0"
-        @click:row="select"
-        :headers="headers"
-        :items="nucelos"
-        :items-per-page="10"
-        :search="search"
-        :footer-props="{
+        <v-card-title style="color: #53565a">
+          Núcleos
+          <v-spacer></v-spacer>
+          <v-text-field
+            dense
+            outlined
+            clearable
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Procurar"
+            class="Fs13"
+            single-line
+            hide-details
+          ></v-text-field>
+        </v-card-title>
+        <v-data-table
+          dense
+          v-model="selected"
+          no-data-text="Nenhum registro encontrado"
+          no-results-text="Nenhum registro encontrado"
+          class="elevation-0"
+          @click:row="select"
+          :headers="headers"
+          :items="nucelos"
+          :items-per-page="10"
+          :search="search"
+          :footer-props="{
             'items-per-page-text': 'Linhas por página:',
             'items-per-page-all-text': 'Tudo'
         }"
-      ></v-data-table>
+        ></v-data-table>
       </v-card>
     </v-container>
   </v-content>
@@ -38,9 +49,9 @@ export default {
     return {
       selected: [],
       headers: [
-        { text: "Sigla",  value: "nucsiglaa", align: "center", width: "10%" },
+        { text: "Sigla", value: "nucsiglaa", align: "center", width: "10%" },
         { text: "Descrição", value: "nucdescri", align: "center" },
-        { text: "Gestor",  value: "nomeGestor", align: "center", width: "30%" },
+        { text: "Gestor", value: "nomeGestor", align: "center", width: "30%" }
       ],
       search: "",
       nucelos: [],
@@ -52,8 +63,9 @@ export default {
   },
   methods: {
     load: async function() {
-      await this.nucleoService.getAll()
-        .then(response => this.nucelos = response.data)
+      await this.nucleoService
+        .getAll()
+        .then(response => (this.nucelos = response.data))
         .catch(error => alert(error));
     },
     goToForm: function() {

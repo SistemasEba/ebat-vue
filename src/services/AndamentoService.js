@@ -25,7 +25,7 @@ export class AndamentoService {
 
     async save(state) {
         return await axios.post(this.url + "save", {
-            anddatand: state.anddatand.toJSON().substring(0, 10),
+            anddatand: state.anddatand,
             andhorass: state.andhorass,
             anddescri: state.anddescri,
             andetpseq: state.andetpseq,
@@ -37,7 +37,7 @@ export class AndamentoService {
     async update(state) {
         return await axios.put(this.url + "update", {
             andsequen: state.id,
-            anddatand: state.anddatand.toJSON().substring(0, 10),
+            anddatand: state.anddatand,
             andhorass: state.andhorass,
             anddescri: state.anddescri,
             andetpseq: state.andetpseq,
