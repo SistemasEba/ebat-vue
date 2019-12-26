@@ -31,7 +31,7 @@
           <strong>3.1</strong> - Caso o colaborador tenha esquecido de realizar o cadastro no dia anterior e não lançar de forma retroativa no dia corrente será adicionado um novo marcador referente à data atual após o término da mesma, ou seja, há um prazo de 24h.
           <div class="EmptyBox10"></div>
   
-          <strong>4</strong> O contribuinte que não manter sua estação de trabalho devidamente organizada e/ou não desligar os monitores no horário do almoço e na saida e estiver ausente será contabilizado marcador após uma advertência.
+          <strong>4</strong> O colaborador que não manter sua estação de trabalho devidamente organizada e/ou não desligar os monitores nos períodos: horário de almoço, horário de saída e/ou estiver ausente do escritório será contabilizado marcador após uma advertência.
           <div class="EmptyBox10"></div>
 
           <strong>4.1</strong> - Se o colaborador já estiver com marcador por causa do motivo acima as próximas advertências serão contabilizadas como marcadores.

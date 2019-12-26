@@ -16,8 +16,7 @@
           <v-col v-for="item in items" :key="item.name" cols="12" sm="6" md="4" lg="3">
             <v-card>
               <v-card-title>
-                <a
-                  :href="'/#/restrito/projeto/form/' + item.pjtsequen"
+                <a v-on:click="goToEdit(item.pjtsequen)"
                   style="text-decoration: none"
                 >
                   <h4 style="color: #53565a">{{ item.pjttitulo }}</h4>
@@ -61,6 +60,9 @@ export default {
   methods: {
     goToForm: function() {
       this.$router.push("/restrito/projeto/form");
+    },
+    goToEdit: function(idProjeto) {
+      this.$router.push("/restrito/projeto/form/" + idProjeto);
     },
     goToEtapas: function(idProjeto) {
       this.$router.push("/restrito/etapa/" + idProjeto);

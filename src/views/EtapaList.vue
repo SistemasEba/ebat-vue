@@ -26,6 +26,8 @@
         </v-card-title>
         <v-data-table
           dense
+          @click:row="select"
+          v-model="selected"
           no-data-text="Nenhum registro encontrado"
           no-results-text="Nenhum registro encontrado"
           class="elevation-0"
@@ -81,7 +83,7 @@ export default {
           align: "center",
           width: "10%"
         },
-        { text: "Ações", value: "action", sortable: false }
+        { text: "Ações", value: "action", sortable: false, width: "7%" }
       ],
       showSuces: false,
       showError: false,
@@ -136,7 +138,10 @@ export default {
     },
     goToAndamentos: function(idEtapa) {
       this.$router.push("/restrito/andamento/" + this.projeto + "/" + idEtapa);
-    }
+    },
+    select: function(item) {
+      this.$router.push("/restrito/andamento/" + this.projeto + "/" + item.etpsequen);
+    },
   }
 };
 </script>

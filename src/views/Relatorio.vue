@@ -21,9 +21,11 @@
                     dense
                     hide-details
                     outlined
+                    v-mask="mask"
                     v-model="dateFormatted"
                     label="Data Inicial"
                     @blur="date = parseDate(dateFormatted)"
+                    v-on:keyup="onSelect"
                     v-on="on"
                   ></v-text-field>
                 </template>
@@ -54,9 +56,11 @@
                     dense
                     outlined
                     hide-details
+                    v-mask="mask"
                     v-model="dateFormattedF"
                     label="Data Final"
                     @blur="dateF = parseDate(dateFormattedF)"
+                    v-on:keyup="onSelect"
                     v-on="on"
                   ></v-text-field>
                 </template>
@@ -94,9 +98,13 @@
 </template>
 
 <script>
+import { mask } from 'vue-the-mask'
 import { AndamentoService } from "../services/AndamentoService";
 
 export default {
+  directives: {
+    mask,
+  },
   data: vm => ({
     date: new Date().toISOString().substr(0, 10),
     dateF: new Date().toISOString().substr(0, 10),
@@ -106,6 +114,7 @@ export default {
     menu2: false,
     loading: false,
     andamentos: [],
+    mask: '##/##/####',
     headers: [
       { text: "Dt.Cadastro", value: "andcaddat", width: "13%" },
       { text: "Data", value: "anddatand" },
