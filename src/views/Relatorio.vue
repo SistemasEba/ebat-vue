@@ -73,6 +73,16 @@
                 ></v-date-picker>
               </v-menu>
             </v-col>
+            <v-spacer />
+            <v-col cols="12" sm="12" md="5">
+              <v-text-field
+                v-model="search"
+                append-icon="fa fa-search"
+                label="Search"
+                single-line
+                hide-details
+              ></v-text-field>
+            </v-col>
           </v-row>
         </v-container>
         <div class="EmptyBox10" />
@@ -85,27 +95,41 @@
           :items="andamentos"
           :items-per-page="10"
           :loading="loading"
+          :search="search"
           loading-text="Carregando... Por favor, aguarde"
           :footer-props="{
             'items-per-page-text': 'Linhas por página:',
             'items-per-page-all-text': 'Tudo',
-            'items-per-page-options': [10, 20, 30, 40, 50]
-        }"
-        ></v-data-table>
+            'items-per-page-options': [10, 20, 30, 40, 50, 100, 250]
+          }"
+        >
+          <template v-slot:item.action="{ item }">
+            <v-icon
+              v-if="checkEditPermission(item)"
+              title="Editar"
+              small
+              class="mr-2"
+              @click="select(item)"
+              >mdi-pencil</v-icon
+            >
+          </template>
+        </v-data-table>
       </v-card>
     </v-container>
   </v-content>
 </template>
 
 <script>
-import { mask } from 'vue-the-mask'
+import { mask } from "vue-the-mask";
 import { AndamentoService } from "../services/AndamentoService";
 
 export default {
   directives: {
-    mask,
+    mask
   },
   data: vm => ({
+    search: "",
+    clisequen: 0,
     date: new Date().toISOString().substr(0, 10),
     dateF: new Date().toISOString().substr(0, 10),
     dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
@@ -114,7 +138,10 @@ export default {
     menu2: false,
     loading: false,
     andamentos: [],
-    mask: '##/##/####',
+    andamentoSelected: {},
+    etapaSelected: {},
+    projetoSelected: {},
+    mask: "##/##/####",
     headers: [
       { text: "Dt.Cadastro", value: "andcaddat", width: "13%" },
       { text: "Data", value: "anddatand" },
@@ -122,11 +149,13 @@ export default {
       { text: "Responsável", value: "andresseq.pesdescri", width: "10%" },
       { text: "Tipo", value: "andtipseq.tipdescri" },
       { text: "Projeto", value: "andetpseq.etppjtseq.pjttitulo", width: "12%" },
-      { text: "Descrição", value: "anddescri" }
+      { text: "Descrição", value: "anddescri" },
+      { text: "Ações", value: "action", sortable: false, width: "4%" }
     ],
     andamentoService: new AndamentoService()
   }),
   mounted() {
+    this.clisequen = localStorage.getItem("id");
     this.onSearch();
   },
   computed: {
@@ -143,6 +172,14 @@ export default {
     }
   },
   methods: {
+    checkEditPermission(item) {
+      return item.andresseq.pessequen == this.clisequen;
+    },
+    select(item) {
+      this.$router.push(
+        `/restrito/andamento/${item.andetpseq.etppjtseq.pjtsequen}/${item.andetpseq.etpsequen}/form/${item.andsequen}`
+      );
+    },
     formatDate(date) {
       if (!date) return null;
 
@@ -168,12 +205,15 @@ export default {
 
             element.andcaddat = dataCadastro.toLocaleString();
             element.anddatand = data.toLocaleDateString();
-            element.andresseq.pesdescri = element.andresseq.pesdescri.substr(0, element.andresseq.pesdescri.indexOf(" ") +1);
+            element.andresseq.pesdescri = element.andresseq.pesdescri.substr(
+              0,
+              element.andresseq.pesdescri.indexOf(" ") + 1
+            );
           });
           this.andamentos = response.data;
         })
         .catch(error => alert(error))
-        .finally(() => this.loading = false);
+        .finally(() => (this.loading = false));
     },
     onSelect: function() {
       this.menu1 = false;

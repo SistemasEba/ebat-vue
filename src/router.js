@@ -25,6 +25,7 @@ import Relatorio from "./views/Relatorio";
 import Lancamento from "./views/Lancamento";
 
 export default new Router({
+    history,
     linkExactActiveClass: "active",
     routes: [{
             path: "/",
