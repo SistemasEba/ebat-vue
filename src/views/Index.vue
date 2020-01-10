@@ -54,6 +54,9 @@
 
           <strong>9</strong> - Não é permitido criação de ferramentas para lançamento automático.
           <div class="EmptyBox10"></div>
+
+          <strong>10</strong> - O colaborador que ficar sem atualizar os tickets diariamente será contabilizado com um marcador após uma advertência.
+          <div class="EmptyBox10"></div>
         </v-container>
       </v-card>
     </v-container>
