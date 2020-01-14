@@ -143,8 +143,8 @@ import { PessoaService } from "../services/PessoaService";
 export default {
   data: vm => ({
     id: null,
-    date: new Date().toISOString().substr(0, 10),
-    dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
+    date: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`,
+    dateFormatted: vm.formatDate(`${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`),
     etapa: null,
     projeto: null,
     etapaBody: {},
@@ -168,6 +168,8 @@ export default {
   watch: {
     date() {
       this.dateFormatted = this.formatDate(this.date);
+      // alert(new Date().toISOString());
+      // alert(`${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`);
     }
   },
   async mounted() {
@@ -211,6 +213,13 @@ export default {
     }
   },
   methods: {
+    // async formatDayOrMonth(num) {
+    //   alert(num);
+    //   if(num<10)
+    //     return "0" + num;
+    //   else 
+    //   return num;
+    // },
     getById: async function() {
       await this.andamentoService
         .getById(this.id)
@@ -232,7 +241,7 @@ export default {
       if (!date) return null;
 
       const [year, month, day] = date.split("-");
-      return `${day}/${month}/${year}`;
+      return `${day.padStart(2, "0")}/${month.padStart(2, "0")}/${year}`;
     },
     parseDate(date) {
       if (!date) return null;
