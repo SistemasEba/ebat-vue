@@ -10,7 +10,8 @@
         border="left"
         icon="mdi-check"
         transition="scale-transition"
-      >Operação realizada com sucesso!</v-alert>
+        >Operação realizada com sucesso!</v-alert
+      >
       <v-alert
         :value="showError"
         type="error"
@@ -20,12 +21,13 @@
         border="left"
         icon="mdi-close"
         transition="scale-transition"
-      >{{error}}</v-alert>
+        >{{ error }}</v-alert
+      >
       <v-card outlined>
-        <v-card-title
-          style="color: #53565a"
-          class="pb-0"
-        >Cadastro de andamento da etapa {{etapaBody.etpdescri}}</v-card-title>
+        <v-card-title style="color: #53565a" class="pb-0"
+          >Cadastro de andamento da etapa
+          {{ etapaBody.etpdescri }}</v-card-title
+        >
         <v-card-text>
           <div class="EmptyBox15" />
           <v-menu
@@ -51,10 +53,11 @@
               ></v-text-field>
             </template>
             <v-date-picker
+              reactive
+              show-current
               color="orange"
               locale="pt-br"
               v-model="date"
-              no-title
               @input="menu1 = false"
             ></v-date-picker>
           </v-menu>
@@ -100,10 +103,24 @@
         </v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
-          <v-btn small depressed outlined class="ma-2" color="warning" v-on:click="back">
+          <v-btn
+            small
+            depressed
+            outlined
+            class="ma-2"
+            color="warning"
+            v-on:click="back"
+          >
             <v-icon left>mdi-arrow-left</v-icon>Voltar
           </v-btn>
-          <v-btn small depressed outlined class="ma-2" color="warning" v-on:click="save">
+          <v-btn
+            small
+            depressed
+            outlined
+            class="ma-2"
+            color="warning"
+            v-on:click="save"
+          >
             <v-icon left>mdi-content-save</v-icon>Salvar
           </v-btn>
           <v-btn
@@ -127,7 +144,9 @@
         <v-card-text>Realmente deseja remover esse registro?</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="orange darken-1" text v-on:click="dialog = false">Não</v-btn>
+          <v-btn color="orange darken-1" text v-on:click="dialog = false"
+            >Não</v-btn
+          >
           <v-btn color="orange darken-1" text v-on:click="remove">Sim</v-btn>
         </v-card-actions>
       </v-card>
@@ -143,8 +162,11 @@ import { PessoaService } from "../services/PessoaService";
 export default {
   data: vm => ({
     id: null,
-    date: `${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`,
-    dateFormatted: vm.formatDate(`${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`),
+    date: vm.today(),
+    dateFormatted: vm.formatDate(
+      `${new Date().getFullYear()}-${new Date().getMonth() +
+        1}-${new Date().getDate()}`
+    ),
     etapa: null,
     projeto: null,
     etapaBody: {},
@@ -168,8 +190,6 @@ export default {
   watch: {
     date() {
       this.dateFormatted = this.formatDate(this.date);
-      // alert(new Date().toISOString());
-      // alert(`${new Date().getFullYear()}-${new Date().getMonth()+1}-${new Date().getDate()}`);
     }
   },
   async mounted() {
@@ -213,13 +233,11 @@ export default {
     }
   },
   methods: {
-    // async formatDayOrMonth(num) {
-    //   alert(num);
-    //   if(num<10)
-    //     return "0" + num;
-    //   else 
-    //   return num;
-    // },
+    today() {
+      var date = new Date();
+      date.setHours(date.getHours() - 5);
+      return date.toISOString().substr(0, 10);
+    },
     getById: async function() {
       await this.andamentoService
         .getById(this.id)

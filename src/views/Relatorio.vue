@@ -130,10 +130,10 @@ export default {
   data: vm => ({
     search: "",
     clisequen: 0,
-    date: new Date().toISOString().substr(0, 10),
-    dateF: new Date().toISOString().substr(0, 10),
-    dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
-    dateFormattedF: vm.formatDate(new Date().toISOString().substr(0, 10)),
+    date: vm.today(),
+    dateF: vm.today(),
+    dateFormatted: vm.formatDate(vm.today()),
+    dateFormattedF: vm.formatDate(vm.today()),
     menu1: false,
     menu2: false,
     loading: false,
@@ -172,6 +172,11 @@ export default {
     }
   },
   methods: {
+    today() {
+      var date = new Date();
+      date.setHours(date.getHours() - 5);
+      return date.toISOString().substr(0, 10);
+    },
     checkEditPermission(item) {
       return item.andresseq.pessequen == this.clisequen;
     },
