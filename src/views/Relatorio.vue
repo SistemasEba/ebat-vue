@@ -30,10 +30,13 @@
                   ></v-text-field>
                 </template>
                 <v-date-picker
+                  scrollable
+                  year-icon="mdi-calendar-blank"
+                  prev-icon="mdi-skip-previous"
+                  next-icon="mdi-skip-next"
                   color="orange"
                   locale="pt-br"
                   v-model="date"
-                  no-title
                   @input="onSelect"
                 ></v-date-picker>
               </v-menu>
@@ -65,10 +68,13 @@
                   ></v-text-field>
                 </template>
                 <v-date-picker
+                  scrollable
+                  year-icon="mdi-calendar-blank"
+                  prev-icon="mdi-skip-previous"
+                  next-icon="mdi-skip-next"
                   color="orange"
                   locale="pt-br"
                   v-model="dateF"
-                  no-title
                   @input="onSelect"
                 ></v-date-picker>
               </v-menu>
@@ -106,13 +112,24 @@
           <template v-slot:item.action="{ item }">
             <v-icon
               v-if="checkEditPermission(item)"
-              title="Editar"
-              small
-              class="mr-2"
+              title="Editar Andamento"
               @click="select(item)"
+              color="orange"
               >mdi-pencil</v-icon
             >
           </template>
+          <!-- <template v-slot:item.andresseq.pesdescri="{ item }">
+            <v-chip
+              v-if="checkEditPermission(item)"
+              color="orange"
+              dark
+              class="text-left"
+              >{{ item.andresseq.pesdescri }}</v-chip
+            >
+            <div v-if="!checkEditPermission(item)" class="text-left">
+              {{ item.andresseq.pesdescri }}
+            </div>
+          </template> -->
         </v-data-table>
       </v-card>
     </v-container>

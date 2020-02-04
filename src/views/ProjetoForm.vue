@@ -4,25 +4,37 @@
       <v-alert
         :value="showSuces"
         type="success"
-        dark
         prominent
-        dense
+        outlined
+        dismissible
         border="left"
         icon="mdi-check"
         transition="scale-transition"
-      >Operação realizada com sucesso!</v-alert>
+      >
+        <v-row align="center">
+          <v-col class="grow">Registro salvo com sucesso!</v-col>
+          <v-col class="shrink">
+            <v-btn small depressed class="ma-2" color="warning" @click="back"
+              >Ver Projetos</v-btn
+            >
+          </v-col>
+        </v-row>
+      </v-alert>
       <v-alert
         :value="showError"
         type="error"
-        dark
         prominent
-        dense
+        outlined
+        dismissible
         border="left"
         icon="mdi-close"
         transition="scale-transition"
-      >{{error}}</v-alert>
+        >{{ error }}</v-alert
+      >
       <v-card outlined>
-        <v-card-title style="color: #53565a" class="pb-0">Cadastro de Projeto</v-card-title>
+        <v-card-title style="color: #53565a" class="pb-0"
+          >Cadastro de Projeto</v-card-title
+        >
         <v-card-text>
           <div class="EmptyBox15" />
           <v-menu
@@ -117,14 +129,34 @@
             outlined
           ></v-select>
           <div class="EmptyBox15" />
-          <v-textarea outlined hide-details name="descricao" label="Descrição" v-model="descricao"></v-textarea>
+          <v-textarea
+            outlined
+            hide-details
+            name="descricao"
+            label="Descrição"
+            v-model="descricao"
+          ></v-textarea>
         </v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
-          <v-btn small depressed outlined class="ma-2" color="warning" v-on:click="back">
+          <v-btn
+            small
+            depressed
+            outlined
+            class="ma-2"
+            color="warning"
+            v-on:click="back"
+          >
             <v-icon left>mdi-arrow-left</v-icon>Voltar
           </v-btn>
-          <v-btn small depressed outlined class="ma-2" color="warning" v-on:click="save">
+          <v-btn
+            small
+            depressed
+            outlined
+            class="ma-2"
+            color="warning"
+            v-on:click="save"
+          >
             <v-icon left>mdi-content-save</v-icon>Salvar
           </v-btn>
           <v-btn
@@ -148,7 +180,9 @@
         <v-card-text>Realmente deseja remover esse registro?</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="orange darken-1" text v-on:click="dialog = false">Não</v-btn>
+          <v-btn color="orange darken-1" text v-on:click="dialog = false"
+            >Não</v-btn
+          >
           <v-btn color="orange darken-1" text v-on:click="remove">Sim</v-btn>
         </v-card-actions>
       </v-card>

@@ -4,20 +4,33 @@
       <v-alert
         :value="showSuces"
         type="success"
-        dark
         prominent
-        dense
+        outlined
+        dismissible
         border="left"
         icon="mdi-check"
         transition="scale-transition"
-        >Operação realizada com sucesso!</v-alert
       >
+        <v-row align="center">
+          <v-col class="grow">Registro salvo com sucesso!</v-col>
+          <v-col class="shrink">
+            <v-btn
+              small
+              depressed
+              class="ma-2"
+              color="warning"
+              @click="verRelatorio"
+              >Ver Relatório</v-btn
+            >
+          </v-col>
+        </v-row>
+      </v-alert>
       <v-alert
         :value="showError"
         type="error"
-        dark
         prominent
-        dense
+        outlined
+        dismissible
         border="left"
         icon="mdi-close"
         transition="scale-transition"
@@ -53,6 +66,10 @@
               ></v-text-field>
             </template>
             <v-date-picker
+              scrollable
+              year-icon="mdi-calendar-blank"
+              prev-icon="mdi-skip-previous"
+              next-icon="mdi-skip-next"
               reactive
               show-current
               color="orange"
@@ -233,6 +250,9 @@ export default {
     }
   },
   methods: {
+    verRelatorio() {
+      this.$router.push("/restrito/relatorio");
+    },
     today() {
       var date = new Date();
       date.setHours(date.getHours() - 5);
