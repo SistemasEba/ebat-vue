@@ -1,6 +1,12 @@
 <template>
   <v-content>
     <v-container fluid>
+      <!-- <v-snackbar dark color="success" :timeout="3500" v-model="showSuces">
+        Registro salvo com sucesso!
+        <v-btn color="warning" small depressed @click="verRelatorio">
+          Ver Relatório
+        </v-btn>
+      </v-snackbar> -->
       <v-alert
         :value="showSuces"
         type="success"
@@ -13,6 +19,17 @@
       >
         <v-row align="center">
           <v-col class="grow">Registro salvo com sucesso!</v-col>
+          <v-col class="shrink">
+            <v-btn
+              small
+              depressed
+              class="ma-2"
+              outlined
+              color="success"
+              @click="criarOutroAndamento"
+              >Criar outro andamento</v-btn
+            >
+          </v-col>
           <v-col class="shrink">
             <v-btn
               small
@@ -250,6 +267,12 @@ export default {
     }
   },
   methods: {
+    criarOutroAndamento() {
+      this.$router.push(
+        `/restrito/andamento/${this.projeto}/${this.etapa}/form`
+      );
+      this.$router.go(0);
+    },
     verRelatorio() {
       this.$router.push("/restrito/relatorio");
     },
@@ -307,6 +330,7 @@ export default {
         });
     },
     save: async function() {
+      // this.showSuces = true;
       if (this.id !== null && this.id !== undefined) {
         await this.andamentoService
           .update({
